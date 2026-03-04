@@ -141,7 +141,7 @@ class CadastroModeloPageState extends State<CadastroModeloPage> {
         mainAxisAlignment: MainAxisAlignment.center,
 
         children: [
-          // Texto principal
+          // Texto principal da tela
           const Text(
             'Bem-vindo ao Cadastro Modelo!',
 
