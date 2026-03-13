@@ -133,7 +133,7 @@ class HomePageState extends State<HomePage> {
             ),
 
             // Texto exibido no botão
-            child: const Text('Ir para Cadastro Modelo'),
+            child: const Text('Testes Visuais'),
           ),
         ],
       ),
