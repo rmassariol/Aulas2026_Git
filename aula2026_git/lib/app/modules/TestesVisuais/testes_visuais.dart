@@ -17,6 +17,25 @@ class TesteVisuaisPageState extends State<TesteVisuaisPage> {
   // Variável que guarda qual item do BottomNavigationBar está selecionado
   int _currentIndex = 0;
 
+  TextEditingController controle1 = TextEditingController();
+  TextEditingController controle2 = TextEditingController();
+
+  double variavelSoma = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+    controle1.text = '0';
+    controle2.text = '0';
+  }
+
+  @override
+  void dispose() {
+    controle1.dispose();
+    controle2.dispose();
+    super.dispose();
+  }
+
   // Método responsável por construir a interface da tela
   @override
   Widget build(BuildContext context) {
@@ -136,45 +155,101 @@ class TesteVisuaisPageState extends State<TesteVisuaisPage> {
     // Centraliza o conteúdo
     return Center(
       // Column organiza os elementos em coluna
-      child: Column(
-        // Alinha os elementos no centro vertical
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 300,
-            height: 200,
-            // margin: EdgeInsets.only(bottom: 200),
-            // padding: EdgeInsets.only(left: 20, top: 100),
-            color: Colors.amber,
-            child: Text('Teste de Container'),
-          ),
-          SizedBox(height: 20),
-
-          Text(
-            'Teste de Texto',
-            style: TextStyle(
-              color: Colors.redAccent,
-              fontSize: 40,
-              decoration: TextDecoration.underline,
+      child: SingleChildScrollView(
+        child: Column(
+          // Alinha os elementos no centro vertical
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            /*   Container(
+              width: 300,
+              height: 200,
+              // margin: EdgeInsets.only(bottom: 200),
+              // padding: EdgeInsets.only(left: 20, top: 100),
+              color: Colors.amber,
+              child: Text('Teste de Container'),
             ),
-          ),
+            SizedBox(height: 20),
 
-          SizedBox(height: 20),
+            Text(
+              'Teste de Texto',
+              style: TextStyle(
+                color: Colors.redAccent,
+                fontSize: 40,
+                decoration: TextDecoration.underline,
+              ),
+            ),
 
-          Image.asset(
-            'assets/logomarca/unesc2.png',
-            //   width: 300,
-            //   height: 300,
-            //   fit: BoxFit.fill,
-          ),
+            SizedBox(height: 20),
 
-          SizedBox(height: 20),
+            Image.asset(
+              'assets/logomarca/unesc2.png',
+              //   width: 300,
+              //   height: 300,
+              //   fit: BoxFit.fill,
+            ),
 
-          Image.network(
-            'https://nxboats.com.br/wp-content/uploads/2023/11/marcas-de-carros-de-luxo-lamborghini.jpg',
-            width: 200,
-          ),
-        ],
+            SizedBox(height: 20),
+
+            Image.network(
+              'https://nxboats.com.br/wp-content/uploads/2023/11/marcas-de-carros-de-luxo-lamborghini.jpg',
+              width: 200,
+            ),
+*/
+            SizedBox(height: 40),
+
+            TextField(
+              controller: controle1,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: "Valor1",
+                labelStyle: TextStyle(fontSize: 28),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+              ),
+            ),
+
+            SizedBox(height: 40),
+            TextField(
+              controller: controle2,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(
+                labelText: "Valor2",
+                labelStyle: TextStyle(fontSize: 28),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                ),
+              ),
+            ),
+            SizedBox(height: 40),
+
+            ElevatedButton(
+              onPressed: () {
+                final v1 = double.parse(controle1.text);
+                final v2 = double.parse(controle2.text);
+
+                setState(() {
+                  variavelSoma = v1 + v2;
+                });
+
+                //debugPrint(variavelSoma.toString());
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.red,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.all(8.0),
+              ),
+              child: Text('Somar'),
+            ),
+
+            SizedBox(height: 40),
+
+            Text(
+              variavelSoma.toStringAsFixed(2),
+              style: TextStyle(fontSize: 20),
+            ),
+          ],
+        ),
       ),
     );
   }
