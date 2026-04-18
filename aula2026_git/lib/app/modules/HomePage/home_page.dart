@@ -1,6 +1,7 @@
 // Importa os widgets do Material Design do Flutter
 import 'package:aula2026_git/app/modules/Imc/imc.dart';
 import 'package:aula2026_git/app/modules/TestesVisuais/testes_visuais.dart';
+import 'package:aula2026_git/app/modules/cadastro_cliente/cad_cliente_page.dart';
 import 'package:flutter/material.dart';
 
 // Importa a página de cadastro que será aberta ao clicar no botão
@@ -170,6 +171,39 @@ class HomePageState extends State<HomePage> {
 
             // Texto exibido no botão
             child: const Text('IMC'),
+          ),
+
+          const SizedBox(height: 12),
+          ElevatedButton(
+            // Função executada quando o botão é pressionado
+            onPressed: () {
+              // Navigator.push abre uma nova tela
+              Navigator.push(
+                // Contexto atual da aplicação
+                context,
+
+                // Define qual página será aberta
+                MaterialPageRoute(
+                  // builder cria a nova página
+                  builder: (_) => CadClientePage(),
+                ),
+              );
+            },
+
+            // Estilo do botão
+            style: ElevatedButton.styleFrom(
+              // Cor de fundo do botão
+              backgroundColor: Colors.blue,
+
+              // Cor do texto do botão
+              foregroundColor: Colors.white,
+
+              // Espaçamento interno do botão
+              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
+            ),
+
+            // Texto exibido no botão
+            child: const Text('Cadastro de Clientes BD'),
           ),
         ],
       ),
