@@ -1,10 +1,13 @@
 // Importa os widgets do Material Design do Flutter
+import 'package:aula2026_git/app/modules/Contador/contador_controller.dart';
+import 'package:aula2026_git/app/modules/Contador/contador_page.dart';
 import 'package:aula2026_git/app/modules/Imc/imc.dart';
 import 'package:aula2026_git/app/modules/TestesVisuais/testes_visuais.dart';
 import 'package:aula2026_git/app/modules/cadastro_cliente/cad_cliente_page.dart';
 import 'package:aula2026_git/app/modules/cadastro_cliente_api/cad_cliente_api_page.dart';
 import 'package:aula2026_git/app/modules/usuarios_api_simples/usuarios_api_simples_page.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Importa a página de cadastro que será aberta ao clicar no botão
 import '../CadastroModelo/Cadastro_Modelo.dart';
@@ -23,6 +26,8 @@ class HomePage extends StatefulWidget {
 
 // Classe que controla o estado da HomePage
 class HomePageState extends State<HomePage> {
+  final controllerContador = Get.find<ContadorController>();
+
   // Método responsável por construir a interface da tela
   @override
   Widget build(BuildContext context) {
@@ -271,6 +276,24 @@ class HomePageState extends State<HomePage> {
 
             // Texto exibido no botão
             child: const Text('Clientes Api'),
+          ),
+
+          const SizedBox(height: 12),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => ContadorPage(),
+                ), //abrindo a tela sem usar o GetX, usando o Navigator do Flutter
+              );
+            },
+            child: Obx(
+              () => Text(
+                // ✅ Adicione Obx aqui
+                'Contador GetX - ${controllerContador.contador.value}',
+              ),
+            ),
           ),
         ],
       ),

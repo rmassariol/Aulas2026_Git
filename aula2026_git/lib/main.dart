@@ -1,12 +1,29 @@
 // Importa a biblioteca principal do Flutter que contém os widgets do Material Design
+import 'dart:io';
+
+import 'package:aula2026_git/app/modules/Contador/contador_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 // Importa a página inicial do aplicativo localizada na pasta app/modules/HomePage
 import 'app/modules/HomePage/home_page.dart';
 
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+
 // Função principal do programa (ponto de entrada da aplicação)
 void main() {
   // Executa o aplicativo iniciando pelo widget MyApp
+  HttpOverrides.global = MyHttpOverrides();
+
+  Get.put(ContadorController());
+
   runApp(const MyApp());
 }
 
